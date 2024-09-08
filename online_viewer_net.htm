@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Recovering Videos</title>
+    <meta charset="utf-8">
+    <meta property="og:title" content="Main Page" />
+    <meta property="og:description" content="Videos MubiLop" />
+    <meta property="theme-color" content="#000000">
+    <meta name="viewport" content="width=device-width">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: black;
+            overflow: hidden;
+        }
+        .text {
+            letter-spacing: 1rem;
+            font-size: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            color: white;
+        }
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .blankbutton {
+            background: none;
+            border: none;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button class="blankbutton" id="button">
+        <p class="text" id="text"></p>
+        <div class="center">
+            <img src="helpme.png" alt="2" draggable="false" height="256">
+        </div>
+    </button>
+    <script>
+        const text = document.getElementById('text');
+        const button = document.getElementById('button');
+        const lines = [
+            'Hello.............. ERROR 403: ACCESS DENIED',
+            'ERROR 500: INTERNAL SERVER ERROR',
+            'STATUS 200: OK',
+            'Opening',
+            '...',
+            'Opened',
+            'Contents:',
+            'I always come back',
+            'Attempting Re-Opening...',
+            'Error 451: Unavailable for legal reasons.',
+            'Warning: Someone got remote access to your system',
+            'Error: OS Corrupted.',
+            'Attempting recovery...',
+            'Error: Bootloader corrupted.'
+        ];
+        let idx = -1;
+        let char = 0;
+        let currentLine = '';
+        const typeOut = () => {
+            currentLine += lines[idx].charAt(char);
+            char++;
+            text.innerHTML = currentLine;
+            if (char < lines[idx].length) {
+                setTimeout(typeOut, 100);
+            }
+        };
+        button.onclick = () => {
+            currentLine = '';
+            char = 0;
+            idx++;
+            if (idx > lines.length - 1) {
+                idx = lines.length - 1;
+                return;
+            }
+            typeOut();
+        };
+    </script>
+</body>
+</html>
